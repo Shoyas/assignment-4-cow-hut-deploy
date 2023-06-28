@@ -18,6 +18,8 @@ const createUser: RequestHandler = catchAsync(async (req, res) => {
 });
 
 const getAllUsers: RequestHandler = catchAsync(async (req, res) => {
+  console.log(req.headers.authorization);
+  console.log(req.user);
   const result = await UserService.getAllUsers();
 
   sendResponse<IUser[]>(res, {

@@ -1,22 +1,26 @@
 /* eslint-disable @typescript-eslint/no-this-alias */
-import { Schema, model } from 'mongoose';
-import { userRoles } from './user.constant';
-import { IUser, UserModel } from './user.interface';
-
 import bcrypt from 'bcrypt';
+import { Schema, model } from 'mongoose';
 import config from '../../../config';
+import { userRoles } from '../users/user.constant';
+import { AdminModel, IAdmin } from './admin.interface';
 
-const userSchema = new Schema<IUser, UserModel>(
+const adminSchema = new Schema<IAdmin, AdminModel>(
   {
-    password: {
+    phoneNumber: {
       type: String,
       required: true,
-      select: false,
+      unique: true,
     },
     role: {
       type: String,
       required: true,
       enum: userRoles,
+    },
+    password: {
+      type: String,
+      required: true,
+      select: false,
     },
     name: {
       firstName: {
@@ -28,21 +32,8 @@ const userSchema = new Schema<IUser, UserModel>(
         required: true,
       },
     },
-    phoneNumber: {
-      type: String,
-      required: true,
-      unique: true,
-    },
     address: {
       type: String,
-      required: true,
-    },
-    budget: {
-      type: Number,
-      required: true,
-    },
-    income: {
-      type: Number,
       required: true,
     },
   },
@@ -58,30 +49,30 @@ const userSchema = new Schema<IUser, UserModel>(
   }
 );
 
-userSchema.statics.isUserExist = async function (
+adminSchema.statics.isAdminExist = async function (
   phoneNumber: string
-): Promise<Pick<IUser, 'phoneNumber' | 'password' | 'role' | 'id'> | null> {
-  return await User.findOne(
+): Promise<Pick<IAdmin, 'phoneNumber' | 'password' | 'role' | 'id'> | null> {
+  return await Admin.findOne(
     { phoneNumber },
-    { phoneNumber: 1, password: 1, role: 1, id: 1 }
+    { phoneNumber: 1, role: 1, password: 1, _id: 1 }
   );
 };
 
-userSchema.statics.isPasswordMatched = async function (
+adminSchema.statics.isPasswordMatched = async function (
   givenPassword: string,
   savedPassword: string
 ): Promise<boolean> {
   return await bcrypt.compare(givenPassword, savedPassword);
 };
 
-userSchema.pre('save', async function (next) {
-  const user = this;
-  user.password = await bcrypt.hash(
-    user.password,
+adminSchema.pre('save', async function (next) {
+  const admin = this;
+  admin.password = await bcrypt.hash(
+    admin.password,
     Number(config.bcrypt_salt_rounds)
   );
 
   next();
 });
 
-export const User = model<IUser, UserModel>('User', userSchema);
+export const Admin = model<IAdmin, AdminModel>('Admin', adminSchema);

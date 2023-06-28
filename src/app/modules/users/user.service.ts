@@ -1,3 +1,4 @@
+import httpStatus from 'http-status';
 import ApiError from '../../../errors/ApiError';
 import { IUser } from './user.interface';
 import { User } from './user.model';
@@ -5,7 +6,7 @@ import { User } from './user.model';
 const createUser = async (user: IUser): Promise<IUser> => {
   const createdUser = await User.create(user);
   if (!createUser) {
-    throw new ApiError(400, 'Failed to create user!');
+    throw new ApiError(httpStatus.BAD_REQUEST, 'Failed to create user!');
   }
   return createdUser;
 };
