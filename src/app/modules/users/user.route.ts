@@ -6,11 +6,13 @@ import { UserController } from './user.controller';
 import { UserValidation } from './user.validation';
 
 const router = express.Router();
+/*
 router.post(
   '/signup',
   validateRequest(UserValidation.createUserZodSchema),
   UserController.createUser
 );
+*/
 router.patch(
   '/:id',
   validateRequest(UserValidation.updateUserZodSchema),
