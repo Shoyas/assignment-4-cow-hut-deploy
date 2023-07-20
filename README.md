@@ -1,38 +1,70 @@
-# l2a3-cow-hut-backend-assignment-Shoyas
+# Online Cow Hut Backend 
+## Production category project for backend
+___________________________________________
 
-##Assignment-4
-### Online Cow Hut Backend - version 2.O
-__________________________________
-##Live Link: needs to update
+
+Features:
+- 
+- Error Handling.
+
+- CRUD Operations on Users, Cows and Orders.
+
+- Auth Service with access token and a refresh token using browser cookie.
+
+- Restricting route according to user permission.  
+
+- Hashing sensitive database information for getting more secure. 
+
+- Creating access token using refresh token.
+
+
+Technologies:
+-
+- Express
+- TypeScript
+- Mongoose
+- MongoDB
+- Node.JS
+- Bcrypt
+- JSONwebtoken
+- Git
+- Netlify
+
+##Live Link: https://assignment-4-cow-hut-server.onrender.com
 
 __Application Routes:__
 
-<!-- 
+
+__Auth (User)__
+* Route: https://assignment-4-cow-hut-server.onrender.com/api/v1/auth/login (POST)
+* Route: https://assignment-4-cow-hut-server.onrender.com/api/v1/auth/signup (POST)
+* Route: https://assignment-4-cow-hut-server.onrender.com/api/v1/auth/refresh-token (POST)
+
+__Auth (Admin)__
+* Route: https://assignment-4-cow-hut-server.onrender.com/api/v1/admins/create-admin (POST)
+* Route: https://assignment-4-cow-hut-server.onrender.com/api/v1/admins/login (POST)
+
 __User__
-* api/v1/users/signup (POST)
-* api/v1/users (GET)
-* api/v1/users/:id (GET)
-* api/v1/users/:id (PATCH)
-* api/v1/users/:id (DELETE)
+* Route: https://assignment-4-cow-hut-server.onrender.com/api/v1/users (GET All Users)
+* Route: https://assignment-4-cow-hut-server.onrender.com/api/v1/users/649c2cead3a5bd4bea88babc (Single GET) Include an id that is saved in your database
+* Route: https://assignment-4-cow-hut-server.onrender.com/api/v1/users/649c2cead3a5bd4bea88babc (PATCH) Include an id that is saved in your database
+* Route: https://assignment-4-cow-hut-server.onrender.com/api/v1/users/649c2cead3a5bd4bea88babc (DELETE) Include an id that is saved in your database
 
-__Cow__
-* api/v1/cows/create-cow (POST)
-* api/v1/cows (GET)
-* api/v1/cows/:id (GET)
-* api/v1/cows/:id (PATCH)
-* api/v1/cows/:id (DELETE)
 
-__Pagination and Filtering routes of Cows__
-* api/v1/cows?pag=1&limit=10
-* api/v1/cows?sortBy=price&sortOrder=asc
-* api/v1/cows?minPrice=2000&maxPrice=8000
-* api/v1/cows?location=Dhaka
-* api/v1/cows?searchTerm=raj
+__Cows__
+* Route: https://assignment-4-cow-hut-server.onrender.com/api/v1/cows/create-cow (POST)
+* Route: https://assignment-4-cow-hut-server.onrender.com/api/v1/cows (GET All Cows)
+* Route: https://assignment-4-cow-hut-server.onrender.com/api/v1/cows/649c3083467eb3b1844956fb (Single GET) Include an id that is saved in your database
+* Route: https://assignment-4-cow-hut-server.onrender.com/api/v1/cows/649c3083467eb3b1844956fb (PATCH) Include an id that is saved in your database
+* Route: https://assignment-4-cow-hut-server.onrender.com/api/v1/cows/649c3083467eb3b1844956fb (DELETE) Include an id that is saved in your database
 
 __Orders__
-* api/v1/orders (POST)
-* api/v1/orders (POST)
- -->
+* Route: https://assignment-4-cow-hut-server.onrender.com/api/v1/orders (POST)
+* Route: https://assignment-4-cow-hut-server.onrender.com/api/v1/orders (GET)
+
+
+
+
 
 
 
